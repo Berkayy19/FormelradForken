@@ -16,7 +16,8 @@ export default function Formelrad() {
         u: "black",
         i: "black",
         r: "black",
-        p: "black"
+        p: "black",
+        message: "black"  // Added for message color
     });
 
     function resetColors() {
@@ -24,7 +25,8 @@ export default function Formelrad() {
             u: "black",
             i: "black",
             r: "black",
-            p: "black"
+            p: "black",
+            message: "black"
         });
     }
 
@@ -54,6 +56,7 @@ export default function Formelrad() {
 
         if (count !== 2) {
             setValues(values => ({ ...values, message: "2 Felder leer lassen, 2 Felder ausfüllen" }));
+            setColors(colors => ({ ...colors, message: "red" }));
             return;
         } else {
             setValues(values => ({ ...values, message: "" }));
@@ -118,7 +121,7 @@ export default function Formelrad() {
                 <InputField color={colors.p} value={values.p} label="Leistung" handleChange={e => setValues(v => ({ ...v, p: e.target.value }))} />
                 <button type="submit">Calculate</button>
                 <button style={{ margin: 10 }} onClick={handleClear}>Clear</button>
-                {values.message && <p style={{ color: "red" }}>{values.message}</p>}
+                <p style={{ color: colors.message }}>{values.message}</p>
             </form>
         </section>
     );
